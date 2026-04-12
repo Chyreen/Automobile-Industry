@@ -2,5 +2,5 @@ fastapi
 uvicorn
 pandas
 numpy
-sckit-learn
+scikit-learn
 joblib
