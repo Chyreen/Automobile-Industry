@@ -88,19 +88,23 @@ model = joblib.load(MODEL_PATH)
 # ---------------------------------------------------
 # Build make -> model mapping
 # ---------------------------------------------------
-df = pd.read_csv(DATA_PATH)
+# df = pd.read_csv(DATA_PATH)
 
-make_model_map = (
-    df.groupby("standard_make")["standard_model"]
-    .apply(lambda x: sorted(x.dropna().astype(str).unique().tolist()))
-    .to_dict()
-)
+# make_model_map = (
+#     df.groupby("standard_make")["standard_model"]
+#     .apply(lambda x: sorted(x.dropna().astype(str).unique().tolist()))
+#     .to_dict()
+# )
 
-for make in make_model_map:
-    if "Other" not in make_model_map[make]:
-        make_model_map[make].append("Other")
+# for make in make_model_map:
+#     if "Other" not in make_model_map[make]:
+#         make_model_map[make].append("Other")
 
-make_model_map["Other"] = ["Other"]
+# make_model_map["Other"] = ["Other"]
+import json
+
+with open("make_model_map.json", "r") as f:
+    make_model_map = json.load(f)
 
 # ---------------------------------------------------
 # Helper function
